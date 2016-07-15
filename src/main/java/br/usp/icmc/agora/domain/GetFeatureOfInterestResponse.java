@@ -2,7 +2,7 @@ package br.usp.icmc.agora.domain;
 
 import java.util.Arrays;
 
-public class GetFeatureOfInterest {
+public class GetFeatureOfInterestResponse {
 	
 	private String request;
 	private String version;

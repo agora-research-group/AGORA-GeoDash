@@ -2,12 +2,12 @@ package br.usp.icmc.agora.domain;
 
 import java.util.Arrays;
 
-public class GetObservationById {
-	
+public class GetObservationByIdRequest {
+
 	private String request;
 	private String version;
 	private String service;
-	private Observations[] observations;	
+	private String[] observation;	
 	
 	public String getRequest() {
 		return request;
@@ -33,17 +33,17 @@ public class GetObservationById {
 		this.service = service;
 	}
 
-	public Observations[] getObservations() {
-		return observations;
+	public String[] getObservation() {
+		return observation;
 	}
 
-	public void setObservations(Observations[] observations) {
-		this.observations = observations;
+	public void setObservation(String[] observation) {
+		this.observation = observation;
 	}
 	
 	@Override
 	public String toString() {
 		return "GetObservationById [request=" + request + ", version=" + version + ", service=" + service
-				+ ", observations=" + Arrays.toString(observations) + "]";
+				+ ", observation=" + Arrays.toString(observation) + "]";
 	}
 }

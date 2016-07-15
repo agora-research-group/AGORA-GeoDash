@@ -1,12 +1,13 @@
 package br.usp.icmc.agora.domain;
 
-public class DescribeSensor {
-	
+public class DescribeSensorRequest {
+
 	private String request;
-	private String version;
 	private String service;
+	private String version;
+	
+	private String procedure;
 	private String procedureDescriptionFormat;
-	private ProcedureDescription procedureDescription;
 	
 	public String getRequest() {
 		return request;
@@ -26,24 +27,22 @@ public class DescribeSensor {
 	public void setService(String service) {
 		this.service = service;
 	}
+	public String getProcedure() {
+		return procedure;
+	}
+	public void setProcedure(String procedure) {
+		this.procedure = procedure;
+	}
 	public String getProcedureDescriptionFormat() {
 		return procedureDescriptionFormat;
 	}
 	public void setProcedureDescriptionFormat(String procedureDescriptionFormat) {
 		this.procedureDescriptionFormat = procedureDescriptionFormat;
 	}
-	public ProcedureDescription getProcedureDescription() {
-		return procedureDescription;
-	}
-	public void setProcedureDescription(ProcedureDescription procedureDescription) {
-		this.procedureDescription = procedureDescription;
-	}
 	
 	@Override
 	public String toString() {
-		return "DescribeSensor [request=" + request + ", version=" + version + ", service=" + service
-				+ ", procedureDescriptionFormat=" + procedureDescriptionFormat + ", procedureDescription="
-				+ procedureDescription + "]";
+		return "DescribeSensorRequest [request=" + request + ", version=" + version + ", service=" + service
+				+ ", procedure=" + procedure + ", procedureDescriptionFormat=" + procedureDescriptionFormat + "]";
 	}
-	
 }

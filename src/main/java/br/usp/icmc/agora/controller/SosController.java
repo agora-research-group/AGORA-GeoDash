@@ -1,17 +1,23 @@
 package br.usp.icmc.agora.controller;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.usp.icmc.agora.domain.DescribeSensor;
-import br.usp.icmc.agora.domain.GetFeatureOfInterest;
-import br.usp.icmc.agora.domain.GetObservation;
-import br.usp.icmc.agora.domain.GetObservationById;
+import br.usp.icmc.agora.domain.DescribeSensorRequest;
+import br.usp.icmc.agora.domain.DescribeSensorResponse;
+import br.usp.icmc.agora.domain.GetFeatureOfInterestRequest;
+import br.usp.icmc.agora.domain.GetFeatureOfInterestResponse;
+import br.usp.icmc.agora.domain.GetObservationByIdRequest;
+import br.usp.icmc.agora.domain.GetObservationByIdResponse;
+import br.usp.icmc.agora.domain.GetObservationRequest;
+import br.usp.icmc.agora.domain.GetObservationResponse;
 import br.usp.icmc.agora.service.SosService;
-import br.usp.icmc.agora.utils.Common;
 
 @RestController
 @RequestMapping("/sos")
@@ -21,48 +27,39 @@ public class SosController {
 	@Autowired
     private SosService sosService;
 	
-	@RequestMapping("/describesensor")
+    @RequestMapping(method = RequestMethod.POST, value = "/describesensor")
     @ResponseBody
-    public DescribeSensor describeSensor() {
+    public DescribeSensorResponse describeSensor(@RequestBody DescribeSensorRequest request) {
     	
-    	DescribeSensor describeSensor = sosService.describeSensor(
-    			Common.readJson("describeSensor.json").toString());
+    	DescribeSensorResponse response = sosService.describeSensor((new JSONObject(request)).toString());
         
-        return describeSensor;
-    }
-	
-	@RequestMapping("/getfeatureofinterest")
-    @ResponseBody
-    public GetFeatureOfInterest getFeatureOfInterest() {
-    	
-		GetFeatureOfInterest getFeatureOfInterest = sosService.getFeatureOfInterest(
-    			Common.readJson("getFeatureOfInterest.json").toString());
-        
-        return getFeatureOfInterest;
-    }
-
-    @RequestMapping("/getobservationbyid")
-    @ResponseBody
-    public GetObservationById getObservationById() {
-    	
-    	GetObservationById getObservationById = sosService.getObservationById(
-    			Common.readJson("getObservationById.json").toString());
-        
-        return getObservationById;
+        return response;
     }
     
-    @RequestMapping("/getobservation")
+    @RequestMapping(method = RequestMethod.POST, value = "/getfeatureofinterest")
     @ResponseBody
-    public GetObservation getObservation() {
+    public GetFeatureOfInterestResponse getFeatureOfInterest(@RequestBody GetFeatureOfInterestRequest request) {
     	
-    	GetObservation getObservation = sosService.getObservation(
-    			Common.readJson("getObservation.json").toString());
+    	GetFeatureOfInterestResponse response = sosService.getFeatureOfInterest((new JSONObject(request)).toString());
         
-        return getObservation;
+        return response;
     }
-
-    /*@RequestMapping(method = RequestMethod.POST, value = "/world")
-    public void post(HelloWorld helloWorld) {
-        helloService.save(helloWorld);
-    }*/
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/getobservationbyid")
+    @ResponseBody
+    public GetObservationByIdResponse getObservationById(@RequestBody GetObservationByIdRequest request) {
+    	
+    	GetObservationByIdResponse response = sosService.getObservationById((new JSONObject(request)).toString());
+        
+        return response;
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/getobservation")
+    @ResponseBody
+    public GetObservationResponse getObservation(@RequestBody GetObservationRequest request) {
+    	
+    	GetObservationResponse response = sosService.getObservation((new JSONObject(request)).toString());
+        
+        return response;
+    }
 }
