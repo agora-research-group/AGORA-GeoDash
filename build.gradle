@@ -31,9 +31,10 @@ configurations {
 }
 
 dependencies {
-	compile files('lib/commons-codec-1.9.jar')
-	compile files('lib/commons-httpclient-3.1.jar')
-	compile files('lib/org-json.jar')
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.9'
+	compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
+	compile group: 'org.json', name: 'json', version: '20090211'
+	compile group: 'com.thetransactioncompany', name: 'cors-filter', version: '2.5'
 	compile('org.springframework.boot:spring-boot-starter-web')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
