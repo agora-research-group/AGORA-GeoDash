@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Common {
 	
 	public final static String SOS_PATH = "http://sensorweb.demo.52north.org/52n-sos-webapp/service";
-	public final static String SERVER_PATH = "C:\\Users\\Oscar Neto\\Documents\\IC\\Workspace\\Git\\geodash\\json\\";
-	
+//	public final static String SERVER_PATH = "C:\\Users\\Oscar Neto\\Documents\\IC\\Workspace\\Git\\geodash\\json\\";
+	public final static String SERVER_PATH = "E:\\Desenvolvimento\\Agora\\AGORA-GeoDash\\json\\";
 	public static <T> T jsonToObject(String json, Class<T> object) {
 		
 		ObjectMapper mapper = new ObjectMapper();

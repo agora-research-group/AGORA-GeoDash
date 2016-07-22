@@ -1,4 +1,4 @@
-package br.usp.icmc.agora.utils;
+package br.usp.icmc.agora;
 
 import java.io.IOException;
 import javax.servlet.Filter;
