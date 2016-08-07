@@ -18,11 +18,19 @@ public class DecisionService {
 		return decisionRepository.findAll();
 	}
 	
+	public Decision getDecision(String id) {
+		return decisionRepository.findOne(id);
+	}
+	
 	public Decision save(Decision decision) {
 		return decisionRepository.save(decision);
 	}
 	
 	public Decision update(Decision decision) {
 		return decisionRepository.save(decision);
+	}
+	
+	public void delete(String id) {
+		decisionRepository.delete(id);
 	}
 }

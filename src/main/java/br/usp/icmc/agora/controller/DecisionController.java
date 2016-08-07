@@ -3,7 +3,6 @@ package br.usp.icmc.agora.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,7 @@ public class DecisionController {
 	private DecisionService decisionService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public List<Decision> getDecisions(ModelMap model) {
+	public List<Decision> list() {
 		System.out.println("list!");
 		System.out.println(decisionService.getDecisions());
 		return decisionService.getDecisions();
@@ -30,7 +29,7 @@ public class DecisionController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public void saveDecision(@RequestBody Decision decision) {
+	public void save(@RequestBody Decision decision) {
 		System.out.println("entrou-save!");
 		if (StringUtils.hasText(decision.getId())) {
 			System.out.println("update!");
@@ -41,5 +40,19 @@ public class DecisionController {
 			decision = decisionService.save(decision);
 			System.out.println(decision);
 		}
+	}
+	
+	@RequestMapping(value = "/find", method = RequestMethod.POST)
+	@ResponseBody
+	public Decision find(@RequestBody String id) {
+		System.out.println("entrou-find!");
+		return decisionService.getDecision(id);
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void delete(@RequestBody String id) {
+		System.out.println("entrou-delete!");
+		decisionService.delete(id);
 	}
 }
