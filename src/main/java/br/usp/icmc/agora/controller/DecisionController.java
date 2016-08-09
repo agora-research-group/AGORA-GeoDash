@@ -23,8 +23,8 @@ public class DecisionController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public List<Decision> list() {
 		System.out.println("list!");
-		System.out.println(decisionService.getDecisions());
-		return decisionService.getDecisions();
+		System.out.println(decisionService.listAll());
+		return decisionService.listAll();
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -46,7 +46,7 @@ public class DecisionController {
 	@ResponseBody
 	public Decision find(@RequestBody String id) {
 		System.out.println("entrou-find!");
-		return decisionService.getDecision(id);
+		return decisionService.get(id);
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)

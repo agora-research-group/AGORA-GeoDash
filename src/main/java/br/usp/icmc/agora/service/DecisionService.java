@@ -14,11 +14,11 @@ public class DecisionService {
 	@Autowired
 	private DecisionRepository decisionRepository;
 
-	public List<Decision> getDecisions() {
+	public List<Decision> listAll() {
 		return decisionRepository.findAll();
 	}
 	
-	public Decision getDecision(String id) {
+	public Decision get(String id) {
 		return decisionRepository.findOne(id);
 	}
 	
