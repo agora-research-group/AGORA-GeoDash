@@ -2,19 +2,31 @@ package br.usp.icmc.agora.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class InformationRequirement {
 
 	@Id
-	public String id;
+	private String id;
 
 	@Indexed
-	public String title;
+	private String title;
 
 	@Indexed
-	public String description;
+	private String description;
+
+	@DBRef
+	private DataSource dataSource;
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	public String getId() {
 		return id;
