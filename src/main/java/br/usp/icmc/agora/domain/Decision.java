@@ -1,20 +1,34 @@
 package br.usp.icmc.agora.domain;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Decision {
 
 	@Id
-	public String id;
+	private String id;
 
 	@Indexed
-	public String title;
+	private String title;
 
 	@Indexed
-	public String description;
+	private String description;
+
+	@DBRef
+	private List<InformationRequirement> infReqs;
+
+	public List<InformationRequirement> getInfReqs() {
+		return infReqs;
+	}
+
+	public void setInfReqs(List<InformationRequirement> infReqs) {
+		this.infReqs = infReqs;
+	}
 
 	public String getId() {
 		return id;
