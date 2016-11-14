@@ -9,6 +9,6 @@ public class SosRepository {
 
 	public String request(String json) {
 		
-		return Common.httpPost(json, "application/json");
+		return Common.httpPost(json, "application/json", "http://sensorweb.demo.52north.org/52n-sos-webapp/service");
 	}
 }
