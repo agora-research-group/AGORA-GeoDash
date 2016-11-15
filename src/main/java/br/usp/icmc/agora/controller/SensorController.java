@@ -54,19 +54,21 @@ public class SensorController {
 	@ResponseBody
 	public List<Observation> getObservation(@RequestBody ObservationRequest obs) {
 		try {
+			String[] aux = obs.getsDate().split("T");
+			obs.setsDate(aux[0] + " 00:00:01");
+			
+			String[] aux1 = obs.geteDate().split("T");
+			obs.seteDate(aux1[0] + " 23:59:01");
+			
 			System.out.println(obs.getId());
-			System.out.println(obs.getsDate().replace("T", " "));
-			System.out.println(obs.geteDate().replace("T", " "));
-
-			obs.seteDate(obs.geteDate().replace("T", " "));
-			obs.setsDate(obs.getsDate().replace("T", " "));
+			System.out.println(obs.getsDate());
+			System.out.println(obs.geteDate());
+			
+//			obs.seteDate(obs.geteDate().replace("T", " "));
+//			obs.setsDate(obs.getsDate().replace("T", " "));
 			
 			ObjectMapper mapper = new ObjectMapper();
 			List<Observation> arr = new ArrayList<Observation>();
-
-			// obs.setId("432170906H");
-			// obs.setsDate("2016-11-14 00:00:00.000Z");
-			// obs.seteDate("2016-11-14 23:00:00.000Z");
 
 			String jsonInString = mapper.writeValueAsString(obs);
 			System.out.println(jsonInString);
@@ -102,9 +104,15 @@ public class SensorController {
 //			List<Observation> arr = new ArrayList<Observation>();
 //
 //			obs.setId("432170906H");
-//			obs.setsDate("2016-11-14 00:00:00.000Z");
-//			obs.seteDate("2016-11-14 23:00:00.000Z");
+//			obs.setsDate("2016-11-14T00:00:00.000Z");
+//			obs.seteDate("2016-11-14T23:00:00.000Z");
 //
+//			String[] aux = ("2016-11-14T00:00:00.000Z").split("T");
+//			obs.setsDate(aux[0] + " 00:00:01");
+//			
+//			String[] aux1 = ("2016-11-14T00:00:00.000Z").split("T");
+//			obs.seteDate(aux1[0] + " 23:59:01");
+//			
 //			String jsonInString = mapper.writeValueAsString(obs);
 //			String response = Common.httpPost(jsonInString, "application/json",
 //					"http://localhost:8081/AGORA-SpatialDataService/observation/listByStation");
