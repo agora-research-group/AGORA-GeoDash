@@ -56,24 +56,25 @@ public class SensorController {
 		try {
 			String[] aux = obs.getsDate().split("T");
 			obs.setsDate(aux[0] + " 00:00:01");
-			
+
 			String[] aux1 = obs.geteDate().split("T");
 			obs.seteDate(aux1[0] + " 23:59:01");
-			
+
 			System.out.println(obs.getId());
 			System.out.println(obs.getsDate());
 			System.out.println(obs.geteDate());
-			
-//			obs.seteDate(obs.geteDate().replace("T", " "));
-//			obs.setsDate(obs.getsDate().replace("T", " "));
-			
+			System.out.println(obs.getProperty());
+
+			// obs.seteDate(obs.geteDate().replace("T", " "));
+			// obs.setsDate(obs.getsDate().replace("T", " "));
+
 			ObjectMapper mapper = new ObjectMapper();
 			List<Observation> arr = new ArrayList<Observation>();
 
 			String jsonInString = mapper.writeValueAsString(obs);
 			System.out.println(jsonInString);
 			String response = Common.httpPost(jsonInString, "application/json",
-					"http://localhost:8081/AGORA-SpatialDataService/observation/listByStation");
+					"http://localhost:8081/AGORA-SpatialDataService/observation/listByStationAndProperty");
 
 			JSONObject jsnobject = new JSONObject(response.replace("[", "{\"observations\": [").replace("]", "]}"));
 
@@ -96,43 +97,46 @@ public class SensorController {
 		return null;
 
 	}
-
-//	public static void main(String[] args) {
-//		try {
-//			ObjectMapper mapper = new ObjectMapper();
-//			ObservationRequest obs = new ObservationRequest();
-//			List<Observation> arr = new ArrayList<Observation>();
-//
-//			obs.setId("432170906H");
-//			obs.setsDate("2016-11-14T00:00:00.000Z");
-//			obs.seteDate("2016-11-14T23:00:00.000Z");
-//
-//			String[] aux = ("2016-11-14T00:00:00.000Z").split("T");
-//			obs.setsDate(aux[0] + " 00:00:01");
-//			
-//			String[] aux1 = ("2016-11-14T00:00:00.000Z").split("T");
-//			obs.seteDate(aux1[0] + " 23:59:01");
-//			
-//			String jsonInString = mapper.writeValueAsString(obs);
-//			String response = Common.httpPost(jsonInString, "application/json",
-//					"http://localhost:8081/AGORA-SpatialDataService/observation/listByStation");
-//
-//			JSONObject jsnobject = new JSONObject(response.replace("[", "{\"observations\": [").replace("]", "]}"));
-//
-//			JSONArray jsonArray = jsnobject.getJSONArray("observations");
-//			for (int i = 0; i < jsonArray.length(); i++) {
-//				JSONObject explrObject = jsonArray.getJSONObject(i);
-//				Observation obsAux = Common.jsonToObject(explrObject.toString(), Observation.class);
-//				arr.add(obsAux);
-//				System.out.println(explrObject);
-//			}
-//
-//			System.out.println(arr.size());
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
+	//
+	// public static void main(String[] args) {
+	// try {
+	// ObjectMapper mapper = new ObjectMapper();
+	// ObservationRequest obs = new ObservationRequest();
+	// List<Observation> arr = new ArrayList<Observation>();
+	//
+	// obs.setId("432170906H");
+	// obs.setsDate("2016-11-14T00:00:00.000Z");
+	// obs.seteDate("2016-11-14T23:00:00.000Z");
+	// obs.setProperty("P");
+	//
+	// String[] aux = ("2016-11-14T00:00:00.000Z").split("T");
+	// obs.setsDate(aux[0] + " 00:00:01");
+	//
+	// String[] aux1 = ("2016-11-14T00:00:00.000Z").split("T");
+	// obs.seteDate(aux1[0] + " 23:59:01");
+	//
+	// String jsonInString = mapper.writeValueAsString(obs);
+	// String response = Common.httpPost(jsonInString, "application/json",
+	// "http://localhost:8081/AGORA-SpatialDataService/observation/listByStationAndProperty");
+	//
+	// JSONObject jsnobject = new JSONObject(response.replace("[",
+	// "{\"observations\": [").replace("]", "]}"));
+	//
+	// JSONArray jsonArray = jsnobject.getJSONArray("observations");
+	// for (int i = 0; i < jsonArray.length(); i++) {
+	// JSONObject explrObject = jsonArray.getJSONObject(i);
+	// Observation obsAux = Common.jsonToObject(explrObject.toString(),
+	// Observation.class);
+	// arr.add(obsAux);
+	// System.out.println(explrObject);
+	// }
+	//
+	// System.out.println(arr.size());
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
 }
