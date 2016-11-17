@@ -26,6 +26,17 @@ public class Property {
 	@DBRef
 	private InformationRequirement infoReq;
 
+	@Indexed
+	public boolean accValue;
+
+	public boolean isAccValue() {
+		return accValue;
+	}
+
+	public void setAccValue(boolean accValue) {
+		this.accValue = accValue;
+	}
+
 	public String getPropertyId() {
 		return propertyId;
 	}
